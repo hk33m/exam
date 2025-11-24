@@ -197,7 +197,7 @@ useEffect(() => {
             <div className="overflow-x-auto mt-8 h-[300px]">
               <table className="w-full text-center border-collapse">
                 <thead>
-                  <tr className="bg-blue-200 text-blue-900">
+                  <tr className="bg-blue-200 text-blue-900 sticky top-0">
                     <th className="p-2">#</th>
                     <th className="p-2">السؤال</th>
                     <th className="p-2">إجابتك</th>
