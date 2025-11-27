@@ -35,8 +35,8 @@ const [name,setname]=useState(()=>{
                 
                 </div>
         <div>
-            <h1 className="text-xl">العلوم الفيزيائية والكيميائية </h1>
-            <h1 className="text-gray-500">المادة وتفاعلاتها </h1>
+            <h1 className="text-xl dark:text-white">العلوم الفيزيائية والكيميائية </h1>
+            <h1 className="text-gray-500 dark:text-gray-400">المادة وتفاعلاتها </h1>
         </div>
         <div>
             <input
@@ -44,7 +44,7 @@ const [name,setname]=useState(()=>{
             onChange={(event)=>{
               setname(event.target.value);
             }}  
-            className=" w-full px-2 py-3 text-center rounded-lg shadow-lg outline-0 outline-blue-600" placeholder="اسم الطالبة"></input>
+            className=" w-full px-2 py-3 text-center dark:text-white rounded-lg shadow-lg outline-0 outline-blue-600" placeholder="اسم الطالبة"></input>
         </div>
         <motion.button
          whileTap={{ scale: 0.9 }}
