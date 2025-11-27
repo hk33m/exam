@@ -15,8 +15,8 @@ const [name,setname]=useState(()=>{
    }
 
     return(
-        <div className="min-h-screen flex justify-center items-center bg-gray-50" dir="rtl">
-             <div className="w-[400px] md:w-[600px] bg-white shadow-2xl p-8 rounded-2xl text-center">
+        <div className="min-h-screen flex justify-center items-center bg-gray-100 dark:bg-slate-900 " dir="rtl">
+             <div className="w-[400px] md:w-[600px] bg-white dark:bg-slate-800 shadow-2xl p-8 rounded-2xl text-center">
          <AnimatePresence>
                      <motion.div
                        initial={{ opacity: 0, x: 30 }}
@@ -26,7 +26,7 @@ const [name,setname]=useState(()=>{
                      >
                 <div className="flex flex-col justify-center items-center">
                 <img src="/image/logo.png" width={"200px"}></img>
-                  <div className=" text-right text-emerald-900">
+                  <div className=" text-right text-emerald-900 dark:text-emerald-500 ">
                     <p>إعداد :</p>
                     <p>الاستاذة / رقية بنت حسين أحمد حامظي</p>
                     <p>ماجستير قياس وتقويم - بكالوريوس كيمياء</p>
