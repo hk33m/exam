@@ -97,8 +97,8 @@ useEffect(() => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex justify-center items-center p-5" dir="rtl">
-      <div className=" w-[400px] md:w-[800px] bg-white shadow-2xl py-8 px-6 rounded-2xl">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-900 flex justify-center items-center p-5" dir="rtl">
+      <div className=" w-[400px] md:w-[800px] bg-white dark:bg-slate-800 shadow-2xl py-8 px-6 rounded-2xl">
         
         {/* ===================== الأسئلة ===================== */}
         {!isFinished && (
@@ -111,12 +111,12 @@ useEffect(() => {
               className="space-y-6"
             >
               <div className="flex gap-1 justify-between">
-              <h1 className="text-xl font-bold text-blue-900">
+              <h1 className="text-xl font-bold text-slate-900 dark:text-white">
                 السؤال {currentIndex + 1} / {questions.length}
               </h1>
               <div className="flex gap-2">
               {currentIndex>0 ?(
-                <RefreshCcw className="text-blue-900" onClick={()=>{
+                <RefreshCcw className="text-slate-900 dark:text-white" onClick={()=>{
                 if(confirm("هل تريد بالفعل بداء الاسئلة من جديد ؟")){
                   resetQuiz();
                 }
@@ -124,11 +124,11 @@ useEffect(() => {
               ):(
                 ""
               )}
-                <UserPen className="text-blue-900" onClick={()=>{navigate("/");}}></UserPen>
+                <UserPen className="text-slate-900 dark:text-white" onClick={()=>{navigate("/");}}></UserPen>
                </div>
                  </div>
                 {questions[currentIndex].url !="" && (<div><img src={questions[currentIndex].url} width={"400px"}></img> </div>) }
-              <p className="text-lg font-semibold text-gray-800">
+              <p className="text-lg font-semibold text-slate-900 dark:text-white">
                 {questions[currentIndex].question}
               </p>
 
@@ -140,11 +140,11 @@ useEffect(() => {
                     key={idx}
                     onClick={() => setSelectedOption(idx)}
                     className={`w-full text-right py-3 px-4 rounded-xl border
-                      shadow-sm transition-all cursor-pointer
+                      shadow-sm transition-all cursor-pointer dark:text-white
                       ${
                         selectedOption === idx
                           ? "bg-blue-500 text-white border-blue-600"
-                          : "bg-white text-gray-800 hover:bg-blue-50"
+                          : "bg-white dark:bg-slate-900 text-gray-800 hover:bg-blue-50"
                       }`}
                   >
                     <span className="font-bold ml-3">{idx ==0 ? "أ" : idx==1 ? "ب" : idx==2 ? "ج" : "د" } -</span>
@@ -211,8 +211,8 @@ useEffect(() => {
                       key={i}
                       className="border hover:bg-gray-50 transition"
                     >
-                      <td className="p-2">{i + 1}</td>
-                      <td className="p-2">{a.question}</td>
+                      <td className="p-2 dark:text-white">{i + 1}</td>
+                      <td className="p-2 dark:text-white">{a.question}</td>
                       <td className={`p-2 ${a.correctAnswer==a.studentAnswer ? "text-green-600" : "text-red-600"} `}>{showimage(a.id) ? (<img src={a.studentAnswer} width={"50px"}></img>) : a.studentAnswer}</td>
                       <td className="p-2 text-green-600">{showimage(a.id) ? (<img src={a.correctAnswer} width={"50px"}></img>) : a.correctAnswer}</td>
                       <td className="p-2">
