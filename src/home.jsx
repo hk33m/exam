@@ -50,7 +50,7 @@ const answer = localStorage.getItem("answers");
          whileTap={{ scale: 0.9 }}
          onClick={handelbutton}
          disabled={name==""}
-        className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-lg shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed">{ answer ? "إكمال الاسئلة" : "بدء الاسئلة"} </motion.button>
+        className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-lg shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed">{ answer!==null ? "إكمال الاسئلة" : "بدء الاسئلة"} </motion.button>
         </motion.div>
         </AnimatePresence>
         </div>
