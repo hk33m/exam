@@ -13,7 +13,7 @@ const [name,setname]=useState(()=>{
         localStorage.setItem("name",JSON.stringify(name));
         navigate("/question");
    }
-
+const answer = localStorage.getItem("answers");
     return(
         <div className="min-h-screen flex justify-center items-center bg-gray-100 dark:bg-slate-900 " dir="rtl">
              <div className="w-[400px] md:w-[600px] bg-white dark:bg-slate-800 shadow-2xl p-8 rounded-2xl text-center">
@@ -50,7 +50,7 @@ const [name,setname]=useState(()=>{
          whileTap={{ scale: 0.9 }}
          onClick={handelbutton}
          disabled={name==""}
-        className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-lg shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed">{localStorage.getItem("name")!=null ? "إكمال الاسئلة" : "بدء الاسئلة"} </motion.button>
+        className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-lg shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed">{localStorage.getItem("name")!=null && answer ? "إكمال الاسئلة" : "بدء الاسئلة"} </motion.button>
         </motion.div>
         </AnimatePresence>
         </div>
