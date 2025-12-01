@@ -52,7 +52,7 @@ const chick = saved!==null ? parseInt(saved) : 0 ;
          whileTap={{ scale: 0.9 }}
          onClick={handelbutton}
          disabled={name==""}
-        className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-lg shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed">{ chick==0 ? "إكمال الاسئلة" : "بدء الاسئلة"} {chick}</motion.button>
+        className="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-lg shadow-lg disabled:bg-gray-300 disabled:cursor-not-allowed">{ chick!==0 ? "إكمال الاسئلة" : "بدء الاسئلة"}</motion.button>
         </motion.div>
         </AnimatePresence>
         </div>
