@@ -13,7 +13,9 @@ const [name,setname]=useState(()=>{
         localStorage.setItem("name",JSON.stringify(name));
         navigate("/question");
    }
-const chick = localStorage.getItem("currentIndex")!==null ? localStorage.getItem("currentIndex") : 0 ;
+
+const saved = localStorage.getItem("currentIndex");
+const chick = saved!==null ? parseInt(saved) : 0 ;
     return(
         <div className="min-h-screen flex justify-center items-center bg-gray-100 dark:bg-slate-900 " dir="rtl">
              <div className="w-[400px] md:w-[600px] bg-white dark:bg-slate-800 shadow-2xl p-8 rounded-2xl text-center">
