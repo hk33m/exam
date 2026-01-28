@@ -37,7 +37,7 @@ const chick = saved!==null ? parseInt(saved) : 0 ;
                 
                 </div>
         <div>
-            <h1 className="text-xl dark:text-white">العلوم الفيزيائية والكيميائية </h1>
+            <h1 className="text-xl dark:text-white">العلوم الكيميائية </h1>
             <h1 className="text-gray-500 dark:text-gray-400">المادة وتفاعلاتها </h1>
         </div>
         <div>
