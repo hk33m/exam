@@ -28,12 +28,12 @@ const chick = saved!==null ? parseInt(saved) : 0 ;
                      >
                 <div className="flex flex-col justify-center items-center">
                 <img src="/image/logo.png" width={"200px"}></img>
-                  <div className=" text-right text-emerald-900 dark:text-emerald-500 ">
+                  {/* <div className=" text-right text-emerald-900 dark:text-emerald-500 ">
                     <p>إعداد :</p>
                     <p>الاستاذة / رقية بنت حسين أحمد حامظي</p>
                     <p>ماجستير قياس وتقويم - بكالوريوس كيمياء</p>
                     <p>إدارة تعليم جازان - المملكة العربية السعودية</p>
-                    </div>
+                    </div> */}
                 
                 </div>
         <div>
