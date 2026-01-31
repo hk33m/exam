@@ -237,7 +237,7 @@ useEffect(() => {
           </motion.div>
         )}
       </div>
-        <div className="text-center dark:text-white  p-3">جميع الحقوق محفوضة لدى المعلمة / رقية حسين حامظي <span className="text-[20px]">©</span> {new Date().getFullYear()}</div>
+        <div className="text-center dark:text-white  p-3">جميع الحقوق محفوظة لدى المعلمة / رقية حسين حامظي <span className="text-[20px]">©</span> {new Date().getFullYear()}</div>
     </div>
   );
 }
