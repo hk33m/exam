@@ -97,7 +97,7 @@ useEffect(() => {
 
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-slate-900 flex justify-center items-center p-5" dir="rtl">
+    <div className="min-h-screen bg-gray-100 dark:bg-slate-900 flex flex-col justify-center items-center p-5" dir="rtl">
       <div className=" w-[400px] md:w-[800px] bg-white dark:bg-slate-800 shadow-2xl py-8 px-6 rounded-2xl">
         
         {/* ===================== الأسئلة ===================== */}
@@ -237,6 +237,7 @@ useEffect(() => {
           </motion.div>
         )}
       </div>
+        <div className="text-center  p-3">جميع الحقوق محفوضة لدى المعلمة / رقية حسين حامظي <span className="text-[20px]">©</span> {new Date().getFullYear()}</div>
     </div>
   );
 }
