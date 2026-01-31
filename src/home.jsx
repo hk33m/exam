@@ -56,7 +56,7 @@ const chick = saved!==null ? parseInt(saved) : 0 ;
         </motion.div>
         </AnimatePresence>
         </div>
-   <div className="text-center  p-3">جميع الحقوق محفوضة لدى المعلمة / رقية حسين حامظي <span className="text-[20px]">©</span> {new Date().getFullYear()}</div>
+   <div className="text-center dark:text-whit  p-3">جميع الحقوق محفوضة لدى المعلمة / رقية حسين حامظي <span className="text-[20px]">©</span> {new Date().getFullYear()}</div>
         </div>
 
     )
