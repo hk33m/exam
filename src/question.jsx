@@ -98,6 +98,10 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-slate-900 flex flex-col justify-center items-center p-5" dir="rtl">
+     <div className="flex gap-3 absolute top-3.5 right-4">
+                <h1 className="px-4 py-2 bg-green-800 text-white rounded-lg">إجابة صحيحة : {trueq}</h1>
+                <h1 className="px-4 py-2 bg-red-800 text-white rounded-lg">إجابة خاطئة : {falseq}</h1>
+              </div>
       <div className=" w-[400px] md:w-[800px] bg-white dark:bg-slate-800 shadow-2xl py-8 px-6 rounded-2xl">
         
         {/* ===================== الأسئلة ===================== */}
