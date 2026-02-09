@@ -4,11 +4,15 @@ import { RefreshCcw,UserPen,X,Check } from "lucide-react";
 import { useNavigate } from "react-router-dom"
 import { questions } from "./data/questions";
 import toast, { Toaster } from "react-hot-toast";
+import { useRef } from "react";
 
 
 
 
 export default function Question(){
+const correctRef = useRef(null);
+const wrongRef = useRef(null);
+
  const navigate =useNavigate();
  const [trueq,settrueq]=useState(0);
  const [falseq,setfalseq]=useState(0);
@@ -69,6 +73,8 @@ useEffect(() => {
     if (selectedOption === questions[currentIndex].correct) {
       setScore(score + 1);
       settrueq(trueq=>trueq+1);
+      correctRef.current.currentTime = 0;
+      correctRef.current.play();
       toast("إجابة صحيحة! أحسنت ",
   {
     icon: <Check></Check>,
@@ -81,6 +87,8 @@ useEffect(() => {
 );
     }else{
       setfalseq(falseq=>falseq+1);
+      wrongRef.current.currentTime = 0;
+      wrongRef.current.play();
       toast(' إجابة خاطئة!حاول في السؤال التالي',
   {
     icon:<X></X>,
@@ -93,7 +101,7 @@ useEffect(() => {
 );
     }
 
-    if((currentIndex+1)%10==0){
+    if((trueq)%9==0 && trueq!=0){
     const msg =
     motivationMessages[Math.floor(Math.random() * motivationMessages.length)];
     toast(msg, { icon: "🌟" });
@@ -145,6 +153,9 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-slate-900 flex flex-col justify-center pt-14 items-center p-5" dir="rtl">
+     <audio ref={correctRef} src="/correct.wav" preload="auto" />
+     <audio ref={wrongRef} src="/wrong.wav" preload="auto" />
+
       {/* شريط التقدم */}
       <div className="flex gap-3 absolute top-3.5 right-4">
                 <h1 className="px-4 py-2 bg-green-800 text-white rounded-lg">إجابة صحيحة : {trueq}</h1>
