@@ -98,10 +98,12 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-slate-900 flex flex-col justify-center items-center p-5" dir="rtl">
-     <div className="flex gap-3 absolute top-3.5 right-4">
-                <h1 className="px-4 py-2 bg-green-800 text-white rounded-lg">إجابة صحيحة : {trueq}</h1>
-                <h1 className="px-4 py-2 bg-red-800 text-white rounded-lg">إجابة خاطئة : {falseq}</h1>
-              </div>
+     <div className="w-[400px] md:w-[800px] mb-2 bg-gray-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+  <div
+    className="bg-blue-600 h-full transition-all duration-500"
+    style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
+  />
+</div>
       <div className=" w-[400px] md:w-[800px] bg-white dark:bg-slate-800 shadow-2xl py-8 px-6 rounded-2xl">
         
         {/* ===================== الأسئلة ===================== */}
