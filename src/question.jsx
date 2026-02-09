@@ -66,12 +66,12 @@ useEffect(() => {
 
   const handleNext = () => {
 
-    if (selectedOption === questions[currentIndex].correct) {
+  if (selectedOption === questions[currentIndex].correct) {
       setScore(score + 1);
       settrueq(trueq=>trueq+1);
-      toast("إجابة صحيحة! أحسنت 👏",
+      toast("إجابة صحيحة! أحسنت ",
   {
-    icon: '👏',
+    icon: <Check></Check>,
     style: {
       borderRadius: '10px',
       background: 'green',
@@ -81,9 +81,9 @@ useEffect(() => {
 );
     }else{
       setfalseq(falseq=>falseq+1);
-      toast(' إجابة خاطئة!حاول في السؤال التالي 💪',
+      toast(' إجابة خاطئة!حاول في السؤال التالي',
   {
-    icon:<Truck></Truck>,
+    icon:<X></X>,
     style: {
       borderRadius: '10px',
       background: 'red',
