@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RefreshCcw,UserPen,Truck } from "lucide-react";
+import { RefreshCcw,UserPen,X,Check } from "lucide-react";
 import { useNavigate } from "react-router-dom"
 import { questions } from "./data/questions";
 import toast, { Toaster } from "react-hot-toast";
@@ -66,7 +66,7 @@ useEffect(() => {
 
   const handleNext = () => {
 
-  if (selectedOption === questions[currentIndex].correct) {
+    if (selectedOption === questions[currentIndex].correct) {
       setScore(score + 1);
       settrueq(trueq=>trueq+1);
       toast("إجابة صحيحة! أحسنت ",
