@@ -14,8 +14,7 @@ const correctRef = useRef(null);
 const wrongRef = useRef(null);
 
  const navigate =useNavigate();
- const [trueq,settrueq]=useState(0);
- const [falseq,setfalseq]=useState(0);
+ 
  const [currentIndex, setCurrentIndex] = useState(() => {
   const saved = localStorage.getItem("currentIndex");
   return saved !== null ? parseInt(saved) : 0;
@@ -36,6 +35,15 @@ const motivationMessages = [
   const saved = localStorage.getItem("score");
   return saved ? JSON.parse(saved) : 0;
 });
+
+const [trueq,settrueq]=useState(() => {
+  const saved = localStorage.getItem("trueq");
+  return saved ? JSON.parse(saved) : 0;
+});
+ const [falseq,setfalseq]=useState(() => {
+  const saved = localStorage.getItem("falseq");
+  return saved ? JSON.parse(saved) : 0;
+});
   const [isFinished, setIsFinished] = useState(() => {
   const saved = localStorage.getItem("isFinished");
   return saved ? JSON.parse(saved) : false;
@@ -50,6 +58,13 @@ const [name,setname]=useState(()=>{
     return n!==null ? JSON.parse(n) : "" 
 });
 
+ useEffect(() => {
+  localStorage.setItem("trueq", JSON.stringify(trueq));
+}, [trueq]);
+
+useEffect(() => {
+  localStorage.setItem("falseq", JSON.stringify(falseq));
+}, [falseq]);
 useEffect(() => {
   localStorage.setItem("isFinished", JSON.stringify(isFinished));
 }, [isFinished]);
