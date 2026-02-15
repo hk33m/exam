@@ -1,24 +1,48 @@
 import { useState,useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RefreshCcw,UserPen,X,Check } from "lucide-react";
+import { RefreshCcw,UserPen,X,Check,Download,Edit } from "lucide-react";
 import { useNavigate } from "react-router-dom"
 import { questions } from "./data/questions";
 import toast, { Toaster } from "react-hot-toast";
 import { useRef } from "react";
-
+import { getDateTime } from "./dateTime";
+import { toPng } from 'html-to-image';
 
 
 
 export default function Question(){
 const correctRef = useRef(null);
 const wrongRef = useRef(null);
-
+const certRef = useRef(null);
  const navigate =useNavigate();
+
+ const { day, time, date } = getDateTime();
+
  
  const [currentIndex, setCurrentIndex] = useState(() => {
   const saved = localStorage.getItem("currentIndex");
   return saved !== null ? parseInt(saved) : 0;
 });
+
+
+
+const downloadCertificate = () => {
+  if (!certRef.current) return;
+
+  toPng(certRef.current, { cacheBust: true })
+    .then((dataUrl) => {
+      const link = document.createElement('a');
+      link.download = 'certificate.png';
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch((err) => {
+      console.error('حدث خطأ أثناء حفظ الشهادة:', err);
+    });
+};
+
+
+
 
 const motivationMessages = [
   "ممتاز! استمر بنفس الحماس 🚀",
@@ -29,19 +53,18 @@ const motivationMessages = [
   "رائع! السؤال التالي بانتظارك 🔥",
 ];
 
-
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [score, setScore] = useState(() => {
-  const saved = localStorage.getItem("score");
-  return saved ? JSON.parse(saved) : 0;
-});
-
 const [trueq,settrueq]=useState(() => {
   const saved = localStorage.getItem("trueq");
   return saved ? JSON.parse(saved) : 0;
 });
  const [falseq,setfalseq]=useState(() => {
   const saved = localStorage.getItem("falseq");
+  return saved ? JSON.parse(saved) : 0;
+});
+
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [score, setScore] = useState(() => {
+  const saved = localStorage.getItem("score");
   return saved ? JSON.parse(saved) : 0;
 });
   const [isFinished, setIsFinished] = useState(() => {
@@ -58,16 +81,17 @@ const [name,setname]=useState(()=>{
     return n!==null ? JSON.parse(n) : "" 
 });
 
- useEffect(() => {
+useEffect(() => {
+  localStorage.setItem("isFinished", JSON.stringify(isFinished));
+}, [isFinished]);
+
+useEffect(() => {
   localStorage.setItem("trueq", JSON.stringify(trueq));
 }, [trueq]);
 
 useEffect(() => {
   localStorage.setItem("falseq", JSON.stringify(falseq));
 }, [falseq]);
-useEffect(() => {
-  localStorage.setItem("isFinished", JSON.stringify(isFinished));
-}, [isFinished]);
 
 useEffect(() => {
   localStorage.setItem("score",score);
@@ -136,12 +160,39 @@ useEffect(() => {
       },
     ]);
 
-    
+     if (currentIndex+1 === questions.length - 1 && !isFinished) {
+    toast.custom((t) => (
+      <div className="bg-yellow-500 text-white p-4 rounded-xl shadow-lg w-[300px] text-center">
+        <h2 className="font-bold text-lg mb-2">تنبيه ⚠️</h2>
+        <p className="text-sm mb-3">
+          هذا هو السؤال الأخير<br />
+          يرجى التأكد من كتابة الاسم الكامل<br />
+          لأنه سيظهر في الشهادة 🎓
+        </p>
+
+        <button
+          onClick={() => toast.dismiss(t.id)}
+          className="bg-white text-yellow-600 px-4 py-1 rounded-lg font-bold"
+        >
+          إغلاق
+        </button>
+      </div>
+    ), {
+      duration: Infinity,   // يبقى ظاهر
+      position: "top-center"
+    });
+  }
 
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(currentIndex + 1);
       setSelectedOption(null);
     } else {
+      const datash={
+        day: day,
+        time: time,
+        date: date,
+      }
+      localStorage.setItem("datash", JSON.stringify(datash));
       setIsFinished(true);
     }
   };
@@ -161,7 +212,7 @@ useEffect(() => {
 };
 
     function showimage(id) {
-  return [31,64,68,90].includes(id);
+    return [31,64,68,90].includes(id);
     }
 
 
@@ -281,7 +332,7 @@ useEffect(() => {
                 : "لا بأس! حاول من جديد وستتحسن 🔁"}
             </motion.div>
 
-            <div className="overflow-x-auto mt-8 h-[300px]">
+            <div className="overflow-x-auto border mt-8 h-[300px]">
               <table className="w-full text-center border-collapse">
                 <thead>
                   <tr className="bg-blue-200 text-blue-900 sticky top-0">
@@ -315,13 +366,55 @@ useEffect(() => {
               </table>
             </div>
 
-            <button
+            
+            {/* ===== الشهادة ===== */}
+<div className="flex flex-col items-center gap-6 mt-5">
+
+  <div
+    ref={certRef}
+   className="relative"
+  >
+  <img src="image/sh.jpeg" className="shadow-lg border border-blue-800"></img>
+
+  <div className="absolute top-6 md:top-16 text-center w-full">
+    <h1 className="text-[11px] md:text-xl font-bold">شهادة إتمام تدريب</h1>
+    <h1  className="text-[10px] md:text-xl">Certificate of Training Completion</h1>
+    <div className="mt-4 md:mt-10 text-[9px] space-y-1 md:space-y-2  md:text-xl">
+      <h1>تشهد منصة تدريب أختبار نافس بأن  </h1>
+      <h1 className="text-right mr-[31%]">الطالبة : <span className="text-amber-700 font-bold">{name}</span> </h1>
+      <h1>الصف : الثالث المتوسط</h1>
+      <h1>قد أتمت تدريب مادة العلوم بنجاح</h1>
+      <h1>فرع : العلوم الكيميائية</h1>
+      <h1 className="text-amber-700 font-bold">الدرجة : {score} / {questions.length} بنسبة  ({Number(score)/Number(questions.length)*100} % ) </h1>
+      <div className="flex px-8 gap-1 justify-center mt-1 pl-4 text-gray-600">
+        <h1 className="bg-white shadow-lg px-2 py-1 rounded-md"> {JSON.parse(localStorage.getItem("datash")).day}  </h1>
+        <h1 className="bg-white shadow-lg px-2 py-1 rounded-md"> {JSON.parse(localStorage.getItem("datash")).time}  </h1>
+        <h1 className="bg-white shadow-lg px-2 py-1 rounded-md"> {JSON.parse(localStorage.getItem("datash")).date} م</h1>
+      </div>
+    </div>
+  </div>
+  <img src="image/nafs.png" className="w-[50px] md:w-[100px] absolute top-[21px] md:top-[50px] left-[30px] md:left-[66px]"></img>
+  </div>
+
+<div className="flex gap-2">
+  <button
+    onClick={downloadCertificate}
+    className="bg-green-600 hover:bg-green-700 text-white px-6 flex gap-2 justify-center items-center py-3 rounded-xl shadow-lg"
+  >
+    حفظ الشهادة في المعرض <Download></Download>
+  </button>
+  
+  </div>
+  <button
               onClick={() =>resetQuiz()}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-lg mt-5"
+              className="bg-blue-600 hover:bg-blue-700 flex gap-2 text-white px-6 py-3 rounded-xl shadow-lg mt-2"
             >
-              إعادة الاختبار 🔄
+              إعادة الاختبار <RefreshCcw></RefreshCcw>
             </button>
+</div>
+
           </motion.div>
+          
         )}
       </div>
      <div className="text-center dark:text-white  p-3">جميع الحقوق محفوظة لدى المعلمة / رقية حسين حامظي <span className="text-[20px]">©</span> {new Date().getFullYear()}</div>
