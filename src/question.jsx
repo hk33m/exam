@@ -381,7 +381,7 @@ useEffect(() => {
     <h1  className="text-[10px] md:text-xl">Certificate of Training Completion</h1>
     <div className="mt-4 md:mt-10 text-[9px] space-y-1 md:space-y-2  md:text-xl">
       <h1>تشهد منصة تدريب أختبار نافس بأن  </h1>
-      <h1 className="text-right mr-[31%]">الطالبة : <span className="text-amber-700 font-bold">{name}</span> </h1>
+      <h1 className="text-right mr-[34%]">الطالبة : <span className="text-amber-700 font-bold">{name}</span> </h1>
       <h1>الصف : الثالث المتوسط</h1>
       <h1>قد أتمت تدريب مادة العلوم بنجاح</h1>
       <h1>فرع : العلوم الكيميائية</h1>
