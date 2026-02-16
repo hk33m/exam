@@ -385,7 +385,8 @@ useEffect(() => {
       <h1>الصف : الثالث المتوسط</h1>
       <h1>قد أتمت تدريب مادة العلوم بنجاح</h1>
       <h1>فرع : العلوم الكيميائية</h1>
-      <h1 className="text-amber-700 font-bold">الدرجة : {score} / {questions.length} بنسبة  ({Number(score)/Number(questions.length)*100} % ) </h1>
+      <h1 className="text-amber-700 font-bold">الدرجة : {score} / {questions.length} بنسبة  ( {((Number(score) / Number(questions.length)) * 100).toFixed(2)} % )
+ </h1>
       <div className="flex px-8 gap-1 justify-center mt-1 pl-4 text-gray-600">
         <h1 className="bg-white shadow-lg px-2 py-1 rounded-md"> {JSON.parse(localStorage.getItem("datash")).day}  </h1>
         <h1 className="bg-white shadow-lg px-2 py-1 rounded-md"> {JSON.parse(localStorage.getItem("datash")).time}  </h1>
